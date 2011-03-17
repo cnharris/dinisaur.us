@@ -1,0 +1,24 @@
+<div class="container" style="margin:0 auto;width:500px">
+	
+	<input type="text" style="width:400px" id="input_url" value="" />&nbsp;<input type="button" value="Convert!" id="button_submit" />
+	
+<div>
+
+<script>
+
+function convert(){
+	new Ajax.Request('/convert?url='+$('input_url').value,
+	  {
+	    method:'get',
+	    onSuccess: function(transport){
+	      var response = transport.responseText || "no response text";
+	      document.body.innerHTML += transport.responseText;
+	    },
+	    onFailure: function(){ alert('Something went wrong...') }
+	  });
+	
+}
+
+Event.observe($("button_submit"),"click",function(){ convert(); });
+
+</script>
