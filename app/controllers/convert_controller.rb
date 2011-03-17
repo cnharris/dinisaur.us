@@ -42,7 +42,7 @@ class ConvertController < ApplicationController
     `ffmpeg -i sample.flv -ar 44100 -ab 160k -ac 2 title.mp3;`
     FileUtils.move("title.mp3","public/resources/#{title}.mp3")
     
-    render :text => "<center><a href='/resources/#{title}.mp3'>Download: #{title}.mp3</a></center>"
+    render :text => "<center><div style='margin:10px auto;'><a href='/resources/#{title}.mp3'>Download: #{title}.mp3</a></div></center>"
     
     
   end

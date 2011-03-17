@@ -1,17 +1,20 @@
 <div class="container" style="margin:0 auto;width:500px">
 	
 	<input type="text" style="width:400px" id="input_url" value="" />&nbsp;<input type="button" value="Convert!" id="button_submit" />
+	<div id="loader" style="display:none;width:400px;margin:10px 0"><img src="http://www.markitable.co.nz/images/ajaxLoader.gif" /></div>
 	
 <div>
 
 <script>
 
 function convert(){
+	$("loader").style.display = "block";
 	new Ajax.Request('/convert?url='+$('input_url').value,
 	  {
 	    method:'get',
 	    onSuccess: function(transport){
 	      var response = transport.responseText || "no response text";
+		  $("loader").style.display = "none";
 	      document.body.innerHTML += transport.responseText;
 	    },
 	    onFailure: function(){ alert('Something went wrong...') }
